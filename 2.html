@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>在逃小猪佩奇的测试网页</title>
+    <link rel="stylesheet" href="https://static.1mc.site/bd/css/mdui.min.css?ver=1.0.1" />
+    <style>
+#endpage, #fixationPoint, #fixationPoint.pic, #testpage, #testpage .pic, #testpage .word, #testpage .answer {
+    display: none;
+}
+.mdui-col button{
+    position: absolute;
+top: 300px;
+left: 150px;
+right: 150px;
+width: 200px;
+padding: 0px 0;
+}
+.pic1 img{
+    max-width: 80px;
+    height:auto;
+    line-height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+}
+.pic img {
+    max-width: 500px;
+    height: 600px;
+    line-height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+}
+.word {
+    line-height: 700px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+}
+    </style>
+  </head>
+<body class="mdui-theme-primary-teal mdui-theme-accent-pink">
+    <div class="mdui-container">
+        <div id="endpage">
+            <h1>感谢！测试结束啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</h1>
+        </div>
+        <div id="hellopage" class="mdui-typo">
+            <h3>您好，欢迎来到在逃小猪佩奇的测试网页！</h3>
+            <h3>我们先问您几个基本问题：</h3>
+            <div class="mdui-textfield">
+                <h4>您的年龄？</h4>
+                <input class="mdui-textfield-input" name="age" type="number" placeholder="年龄" />
+            </div>
+            <h4>您的性别？</h4>
+            <label class="mdui-radio">
+                <input type="radio" name="sex" value="男" />
+                <i class="mdui-radio-icon"></i>
+                男
+            </label>
+            <label class="mdui-radio">
+                <input type="radio" name="sex" value="女" />
+                <i class="mdui-radio-icon"></i>
+                女
+            </label>
+            <label class="mdui-radio">
+                <input type="radio" name="sex" value="其他" checked />
+                <i class="mdui-radio-icon"></i>
+                其他
+            </label>
+            <h4>您来自哪里？</h4>
+            <input class="mdui-textfield-input" name="city" type="text" placeholder="请输入您所在城市" />
+            <h4>您听说过洛丽塔文化吗？</h4>
+            <label class="mdui-radio">
+                <input type="radio" name="heard" value="听说过" />
+                <i class="mdui-radio-icon"></i>
+                听说过
+            </label>
+            <label class="mdui-radio">
+                <input type="radio" name="heard" value="没听说过" />
+                <i class="mdui-radio-icon"></i>
+                没听说过
+            </label>
+
+            <p>
+                请确认您的答案真实，点击开始测试后不可修改。
+                点击开始测试后，您将看到一个准星，请将目光停留在准星上。
+                之后您将短暂的看到一张图片和一种性格。
+                请选择性格是正面词汇还是负面词汇。您的选择将被计时。
+            </p>
+            <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" onclick="startTest()">开始测试</button>
+        </div>
+
+        <div id="fixationPoint">
+            <div class="pic1"><img src="https://previews.123rf.com/images/sevenozz/sevenozz1811/sevenozz181100135/127559073-tireur-d-%C3%A9lite-simple-visant-l-ic%C3%B4ne-de-croix-r%C3%A9ticule-de-port%C3%A9e-ar.jpg"/></div>" 
+        </div>
+
+        <div id="testpage">
+            <div class="pic"><img src=""/></div>
+            <div class="word"><h1></h1></div>
+            <div class="answer">
+                <div class="mdui-row-xs-2">
+                    <div class="mdui-col">
+                      <button class="mdui-btn mdui-btn-block mdui-color-green mdui-ripple" onclick="setAnswer(1)">正面词汇</button>
+                    </div>
+                    <div class="mdui-col">
+                      <button class="mdui-btn mdui-btn-block mdui-color-red mdui-ripple" onclick="setAnswer(0)">负面词汇</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+<script src="https://static.1mc.site/bd/js/mdui.min.js?ver=1.0.1"></script>
+<script>
+    var questionList = [
+    ['孤僻', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181104%2F68c03921f01441418fde559136681817.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634642491&t=40ab17963457e11e0d971f53811ec317'],
+    ['冷漠', 'http://imgsrc.baidu.com/forum/pic/item/3f2c5bee3d6d55fb69ed771361224f4a20a4dd13.jpg'],
+    ['友善', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp3.pstatp.com%2Flarge%2Fpgc-image%2F15339191194136dc241b6cd&refer=http%3A%2F%2Fp3.pstatp.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629891593&t=a00c255f3ec39650373ead42b6cc3739'],
+    ['热心', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi3%2F83566271%2FO1CN01724s4D1wCACpDfmNJ_%21%2183566271.jpg_300x300.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629892778&t=b24f014d85731a6a3248fa5bf60ebc1d'],
+    ['---', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi4%2F2998628320%2FO1CN01oVdgFe2BKbtklg34R_%21%212998628320.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629893213&t=75021530bd0894daba606c07eccaa370'],
+    ], nowId = 0, answerData = [], lastTimer = 0;
+let ms = 0, outTime;
+    function startTest() {
+        hellopage.style.display = 'none';
+        fixationPoint.style.display = 'block';
+        sleep(1000).then(() => {
+            fixationPoint.style.display = 'none';
+            sleep(500).then(() => {
+                testpage.style.display = 'block';
+                showQuestion(0);
+            });
+        });
+    }
+function myLoad() {
+    document.getElementById('xuanma').style.top = document.body.clientHeight / 2 - document.getElementById('ximage').height / 2;
+    document.getElementById('xuanma').style.left = document.body.clientWidth / 2 - document.getElementById('ximage').width / 2;
+    }
+
+function showQuestion(id) {
+    nowId = id;
+    let picDiv = document.querySelector('#testpage .pic');
+    let wordDiv = document.querySelector('#testpage .word');
+    let answDiv = document.querySelector('#testpage .answer');
+    wordDiv.style.display = 'none';
+    answDiv.style.display = 'none';
+    document.querySelector('#testpage .pic img').src = questionList[id][1];
+    document.querySelector('#testpage .word h1').innerText = questionList[id][0];
+    picDiv.style.display = 'block';
+    answDiv.style.display = 'none';
+    sleep(500).then(() => {
+        picDiv.style.display = 'none';
+        sleep(500).then(() => {
+            wordDiv.style.display = 'block';
+            sleep(500).then(() => {
+                wordDiv.style.display = 'none';
+                answDiv.style.display = 'block';
+                startTimer();
+            });
+        });
+    });
+}
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+
+function startTimer() {
+    clearInterval(lastTimer);
+    lastTimer = setInterval(()=>{
+        ms += 100;
+        let sec = Math.floor(ms/1000);
+        let minute = Math.floor(sec / 60);
+
+        sec = sec < 10 ?  "0" + sec.toString() : sec;
+        minute = minute < 10 ?  "0" + minute.toString() : minute;
+        outTime = minute+':'+sec+'.'+ ms%1000;
+    },100);
+}
+function setAnswer(t) {
+    clearInterval(lastTimer);
+    let data = [];
+    data['id'] = nowId;
+    data['time'] = outTime;
+    data['answer'] = t == 0 ? '负面' : '正面';
+    answerData.push(data);
+    nextQuestion();
+}
+function nextQuestion() {
+    if(nowId == questionList.length-1) {
+        // 如果是最后一题
+        testpage.style.display = 'none';
+        endpage.style.display = 'block';
+        mdui.alert(GetBasicAnswer()+answerData.map((j)=>{
+            return `${questionList[j.id][0]} - 耗时${j.time} - ${j.answer}<br>`;
+        }).join(''));
+    }else{
+        showQuestion(++nowId);
+    }
+}
+function GetBasicAnswer() {
+    let age = document.querySelector('input[name=age]').value;
+    let sex = document.querySelector('input[name=sex]:checked').value;
+    let heard = document.querySelector('input[name=heard]:checked').value;
+    let city = document.querySelector('input[name=city]').value;
+    return '年龄：'+age+'<br>性别：'+sex+'<br>您听说过洛丽塔文化吗：'+heard+'<br>城市：'+city+'<br>';
+}
+</script>
+</body>
+</html> 
